@@ -2,8 +2,8 @@ my_dict = {
     'tuple': (1, 2, 3, 4, 5),
     'list': ['a', 'b', 'c', 'd', 'e'],
     'dict': {'cat': 'meow', 'dog': 'gav', 'cow': 'moo', 'duck': 'crya', 'sheep': 'bee'},
-    'set': {'Tom', 'Mike', 'Bob', 'Sam', 'Phil'} 
-    }
+    'set': {'Tom', 'Mike', 'Bob', 'Sam', 'Phil'}
+          }
 
 print(my_dict['tuple'][-1])
 
