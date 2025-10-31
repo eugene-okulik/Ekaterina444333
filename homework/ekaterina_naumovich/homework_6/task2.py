@@ -1,7 +1,7 @@
-numbers = range(1,101)
+numbers = range(1, 101)
 for number in numbers:
     if number % 3 == 0 and number % 5 == 0:
-        print ('FuzzBuzz')
+        print('FuzzBuzz')
     elif number % 5 == 0:
         print('Buzz')
     elif number % 3 == 0:
