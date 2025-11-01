@@ -4,9 +4,9 @@ words = text.split()
 new_text = []
 for word in words:
     if word.endswith(','):
-        new_text.append(word[:-1] + 'ing')
+        new_text.append(word[:-1] + 'ing,')
     elif word.endswith('.'):
-        new_text.append(word[:-1] + 'ing')
+        new_text.append(word[:-1] + 'ing.')
     else:
         new_text.append(word + 'ing')
 fin_text = ' '.join(new_text)
