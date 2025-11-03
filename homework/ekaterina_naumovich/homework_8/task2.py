@@ -6,6 +6,7 @@ def fibonachi(limit):
         a, b = b, a + b
         count += 1
 
+
 right_count = [5, 200, 1000, 100000]
 count = 0
 for number in fibonachi(100000):
