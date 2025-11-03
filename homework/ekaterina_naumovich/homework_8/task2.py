@@ -1,5 +1,5 @@
 def fibonachi(limit):
-    a , b = 0, 1
+    a, b = 0, 1
     count = 0
     while True:
         yield a
@@ -15,6 +15,3 @@ for number in fibonachi(100000):
         print(number)
     if count == 100000:
         break
-
-
-
