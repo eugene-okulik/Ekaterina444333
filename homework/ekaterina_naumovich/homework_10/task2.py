@@ -9,7 +9,8 @@ def repeat_me(func):
 def example(text):
     print(text)
 
-example('print me', count = 2)
+
+example('print me', count=2)
 
 
 def repeat_me2(count):

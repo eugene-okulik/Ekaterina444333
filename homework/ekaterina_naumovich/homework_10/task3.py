@@ -28,5 +28,6 @@ def calc(first, second, operation):
         print('wrong operation')
         return None
 
+
 result = calc(int(input('first number: ')), int(input('second number: ')))
 print(f'your result is: {result}')
