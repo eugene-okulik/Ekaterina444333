@@ -14,7 +14,7 @@ class Book:
                   f' материал: {self.material}, зарезервирована')
         else:
             print(f'Название: {self.title}, Автор: {self.author}, страниц: {self.number_of_pages},'
-                   f' материал: {self.material}')
+                  f' материал: {self.material}')
 
 
 class SchoolBook(Book):
@@ -44,7 +44,7 @@ one_hundred_years_of_solitude = Book('бумага', True, 'Сто лет оди
                                      'Габриель Гарсия Маркиз', 596, '5738574003',
                                      False)
 crime_and_punishment = Book('бумага', True, 'Преступление и наказание', 'Федор Достоевский',
-                           777, '47683892455', False)
+                            777, '47683892455', False)
 
 the_little_prince.result()
 the_lord_of_the_rings.result()
