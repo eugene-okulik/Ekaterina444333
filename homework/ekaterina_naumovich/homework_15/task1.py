@@ -10,77 +10,67 @@ db = mysql.connect(
 
 cursor = db.cursor(dictionary=True)
 
-# Insert student
-cursor.execute(
-    "INSERT INTO students (name, second_name) VALUES ('Nicolay', 'Nicolay')"
-)
+insert_query = "INSERT INTO students (name, second_name) VALUES (%s, %s)"
+cursor.execute(insert_query,('Nicolay', 'Nicolayy'))
 student_id = cursor.lastrowid
 
-# Insert book
-cursor.execute(
-    f"INSERT INTO books (title, taken_by_student_id) "
-    f"VALUES ('My_book', {student_id})"
-)
+insert_query_2 = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
+cursor.executemany(insert_query_2, [('Your_book',student_id),('His_book',student_id)])
 
-# Insert group
-cursor.execute(
-    "INSERT INTO `groups` (title, start_date, end_date) "
-    "VALUES ('MIMIMU', 'sep 2025', 'jul 2026')"
-)
+insert_query_3 = "INSERT INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)"
+cursor.execute(insert_query_3, ('Nene','oct 2027','sep 2028'))
 group_id = cursor.lastrowid
 
-cursor.execute(
-    f"UPDATE students SET group_id = {group_id} WHERE id = {student_id}"
-)
+query1 = "UPDATE students SET group_id = %s WHERE id = %s"
+cursor.execute(query1,(group_id,student_id))
 
-# Insert subjects
-cursor.execute("INSERT INTO subjects (title) VALUES ('MA')")
+insert_query_4 = "INSERT INTO subjects (title) VALUES (%s)"
+cursor.execute(insert_query_4,('Him',))
 subjects1_id = cursor.lastrowid
 
-cursor.execute("INSERT INTO subjects (title) VALUES ('MO')")
+insert_query_5 = "INSERT INTO subjects (title) VALUES (%s)"
+cursor.execute(insert_query_5,('Bio',))
 subjects2_id = cursor.lastrowid
 
-# Insert lessons
-cursor.execute(
-    "INSERT INTO lessons (title, subject_id) VALUES "
-    f"('1', {subjects1_id}), ('2', {subjects1_id}), "
-    f"('1', {subjects2_id}), ('2', {subjects2_id})"
-)
+insert_query_6 = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
+cursor.execute(insert_query_6,('1',subjects1_id))
+lessons_id_1 = cursor.lastrowid
+cursor.execute(insert_query_6,('2',subjects1_id))
+lessons_id_2 = cursor.lastrowid
+cursor.execute(insert_query_6,('1',subjects2_id))
+lessons_id_3 = cursor.lastrowid
+cursor.execute(insert_query_6,('2',subjects2_id))
+lessons_id_4 = cursor.lastrowid
 
-# Get lesson IDs
-cursor.execute("SELECT id FROM lessons ORDER BY id DESC LIMIT 4")
-lessons_ids = cursor.fetchall()
-last_ids = [row['id'] for row in lessons_ids]
-
-# Insert marks
-cursor.execute(
-    "INSERT INTO marks (value, lesson_id, student_id) VALUES "
-    f"('5', {last_ids[0]}, {student_id}), "
-    f"('5', {last_ids[1]}, {student_id}), "
-    f"('5', {last_ids[2]}, {student_id}), "
-    f"('5', {last_ids[3]}, {student_id})"
+insert_marks = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+cursor.executemany(
+    insert_marks, [
+        ('5',lessons_id_1,student_id),
+        ('2',lessons_id_2,student_id),
+        ('3',lessons_id_3,student_id),
+        ('4',lessons_id_4,student_id)
+    ]
 )
 
 db.commit()
 
-# Queries
-marks_query = """
+marks_query = f"""
 SELECT *
 FROM marks
-WHERE student_id = 21713
+WHERE student_id = {student_id}
 """
 cursor.execute(marks_query)
 print(cursor.fetchall())
 
-books_query = """
+books_query = f"""
 SELECT *
 FROM books
-WHERE taken_by_student_id = 21713
+WHERE taken_by_student_id = {student_id}
 """
 cursor.execute(books_query)
 print(cursor.fetchall())
 
-all_info_query = """
+all_info_query = f"""
 SELECT *
 FROM students s
 RIGHT JOIN `groups` g ON g.id = group_id
@@ -88,7 +78,7 @@ RIGHT JOIN books b ON b.taken_by_student_id = s.id
 RIGHT JOIN marks m ON m.student_id = s.id
 RIGHT JOIN lessons l ON l.id = m.lesson_id
 RIGHT JOIN subjects s2 ON s2.id = l.subject_id
-WHERE s.id = 21713
+WHERE s.id = {student_id}
 """
 cursor.execute(all_info_query)
 print(cursor.fetchall())
