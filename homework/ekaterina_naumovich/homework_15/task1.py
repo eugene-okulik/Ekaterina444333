@@ -15,7 +15,7 @@ cursor.execute(insert_query, ('Nicolay', 'Nicolayy'))
 student_id = cursor.lastrowid
 
 insert_query_2 = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
-cursor.executemany(insert_query_2,  [('Your_book', student_id), ('His_book', student_id)])
+cursor.executemany(insert_query_2, [('Your_book', student_id), ('His_book', student_id)])
 
 insert_query_3 = "INSERT INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)"
 cursor.execute(insert_query_3, ('Nene', 'oct 2027', 'sep 2028'))
