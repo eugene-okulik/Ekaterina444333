@@ -11,44 +11,44 @@ db = mysql.connect(
 cursor = db.cursor(dictionary=True)
 
 insert_query = "INSERT INTO students (name, second_name) VALUES (%s, %s)"
-cursor.execute(insert_query,('Nicolay', 'Nicolayy'))
+cursor.execute(insert_query, ('Nicolay', 'Nicolayy'))
 student_id = cursor.lastrowid
 
 insert_query_2 = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
-cursor.executemany(insert_query_2, [('Your_book',student_id),('His_book',student_id)])
+cursor.executemany(insert_query_2,  [('Your_book', student_id), ('His_book', student_id)])
 
 insert_query_3 = "INSERT INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)"
-cursor.execute(insert_query_3, ('Nene','oct 2027','sep 2028'))
+cursor.execute(insert_query_3, ('Nene', 'oct 2027', 'sep 2028'))
 group_id = cursor.lastrowid
 
 query1 = "UPDATE students SET group_id = %s WHERE id = %s"
-cursor.execute(query1,(group_id,student_id))
+cursor.execute(query1, (group_id, student_id))
 
 insert_query_4 = "INSERT INTO subjects (title) VALUES (%s)"
-cursor.execute(insert_query_4,('Him',))
+cursor.execute(insert_query_4, ('Him',))
 subjects1_id = cursor.lastrowid
 
 insert_query_5 = "INSERT INTO subjects (title) VALUES (%s)"
-cursor.execute(insert_query_5,('Bio',))
+cursor.execute(insert_query_5, ('Bio',))
 subjects2_id = cursor.lastrowid
 
 insert_query_6 = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
-cursor.execute(insert_query_6,('1',subjects1_id))
+cursor.execute(insert_query_6, ('1', subjects1_id))
 lessons_id_1 = cursor.lastrowid
-cursor.execute(insert_query_6,('2',subjects1_id))
+cursor.execute(insert_query_6, ('2', subjects1_id))
 lessons_id_2 = cursor.lastrowid
-cursor.execute(insert_query_6,('1',subjects2_id))
+cursor.execute(insert_query_6, ('1', subjects2_id))
 lessons_id_3 = cursor.lastrowid
-cursor.execute(insert_query_6,('2',subjects2_id))
+cursor.execute(insert_query_6, ('2', subjects2_id))
 lessons_id_4 = cursor.lastrowid
 
 insert_marks = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
 cursor.executemany(
     insert_marks, [
-        ('5',lessons_id_1,student_id),
-        ('2',lessons_id_2,student_id),
-        ('3',lessons_id_3,student_id),
-        ('4',lessons_id_4,student_id)
+        ('5', lessons_id_1, student_id),
+        ('2', lessons_id_2, student_id),
+        ('3', lessons_id_3, student_id),
+        ('4', lessons_id_4, student_id)
     ]
 )
 
