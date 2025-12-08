@@ -15,7 +15,7 @@ db = mysql.connect(
 
 cursor = db.cursor(dictionary=True)
 query = '''
-SELECT 
+SELECT
 s.name AS name,
 s.second_name AS second_name,
 g.title AS group_title,
@@ -34,7 +34,7 @@ cursor.execute(query)
 db_rows = cursor.fetchall()
 
 base_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-homework_path = os.path.join(base_path, 'eugene_okulik', 'Lesson_16', 'hw_data','data.csv')
+homework_path = os.path.join(base_path, 'eugene_okulik', 'Lesson_16', 'hw_data', 'data.csv')
 with open(homework_path) as csv_file:
     data_csv = csv.DictReader(csv_file)
     csv_rows = []
