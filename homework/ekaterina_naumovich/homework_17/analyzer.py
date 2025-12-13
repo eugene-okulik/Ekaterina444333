@@ -59,7 +59,6 @@ for log_file in log_files:
         if current_time and current_block:
             blocks[current_time] = " ".join(current_block)
 
-
     for time, block in blocks.items():
         if args.text in block:
             words = block.split()
