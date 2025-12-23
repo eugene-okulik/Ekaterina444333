@@ -14,6 +14,7 @@ def object_for_id():
     yield object_id
     requests.delete(f'http://objapi.course.qa-practice.com/object/{object_id}')
 
+
 @pytest.fixture
 def before_after():
     print('before test')
