@@ -25,4 +25,6 @@ class Endpoint:
 
     @allure.step('Fields name or data is not empty')
     def check_fields_name_or_data_is_not_empty(self):
-        assert self.json().get('name') or self.json().get('data'), 'You must fill in one of the fields'
+        assert (
+            self.json().get('name') or self.json().get('data')
+        ), 'You must fill in one of the fields'
