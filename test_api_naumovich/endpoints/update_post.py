@@ -4,9 +4,9 @@ import requests
 from test_api_naumovich.endpoints.endpoint import Endpoint
 
 
-class UpdatePost(Endpoint):
-    @allure.step('Update a post')
-    def make_changes_in_post(self, object_id, body, headers=None):
+class UpdateObject(Endpoint):
+    @allure.step('Update a object')
+    def make_changes_in_object(self, object_id, body, headers=None):
         headers = headers if headers else self.headers
 
         self.response = requests.put(
